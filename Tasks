@@ -1,17 +1,13 @@
 Devops Tasks:
 
+* create GitHub account - https://github.com/
 
-git clone https://github.com/behemius/Devops1
+https://github.com/behemius
+
+
+Prerequisites:
+git clone https://github.com/behemius/Devops01.git
 cd Devops1
-
-* create a Virtual Machine on Aws with EC2 machine with HTTP server accessible from internet
-
-cd ec2_http
-
-terraform init
-terraform plan
-terraform apply
-terraform destroy
 
 * install Terraform on Windows or Linux
 
@@ -20,15 +16,52 @@ unzip terraform_0.12.16_linux_amd64.zip
 rm terraform_0.12.16_linux_amd64.zip 
 sudo mv terraform /usr/bin
 
+* create a Virtual Machine on Aws with EC2 machine with HTTP server accessible from internet
+* manually create virtual machine with Terraform
+
+cd ec2_http
+
+terraform init
+terraform plan
+terraform apply
+# terraform destroy
+
 * configure AWS client: API and keys
 
+* install Jenkins on AWS machine 
 
-* install Jenkins on AWS machine * create GitHub account - https://github.com/
+Machine created with AWS Console
+Commands:
+sudo yum -y install java-1.8.0
+sudo yum -y update
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+sudo rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
+sudo yum -y install jenkins
+sudo systemctl start jenkins.service
+sudo systemctl enable jenkins.service
+wget https://releases.hashicorp.com/terraform/0.12.16/terraform_0.12.16_linux_amd64.zip
+unzip terraform_0.12.16_linux_amd64.zip 
+rm terraform_0.12.16_linux_amd64.zip 
+sudo mv terraform /usr/bin
 
-* manually create virtual machine with Terraform
+Enabling port 8080 
+
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+Plugins installation
+Setting access keys as variables
 
 * upload the Terraform sources to GitHub
 
+https://github.com/behemius/Devops1
+
 * connect GitHub with Jenkins (pipelines & webhook)
 
+Webhook Set
+
+terraform init
+terraform --auto-approve 
+
+
 * schedule tasks on Jenkins to deploy EC2 machine with HTTP server accessible from internet
+
