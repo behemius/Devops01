@@ -33,17 +33,23 @@ resource "aws_instance" "http_server" {
   
   user_data = <<-EOF
   #!/bin/bash
-  sudo yum update -y
   sudo yum install apache2 -y
   sudo systemctl enable apache2
   sudo systemctl start apache2
-  echo "<html><head><title> Web Server </title></head><body><h1> Apache Web Server </h1></body></html>"> /var/www/html/index.html
+  # echo "<html><head><title> Web Server </title></head><body><h1> Apache Web Server </h1></body></html>"> /var/www/html/index.html
   EOF
-  
+
 }
 
 resource "aws_security_group" "http_server" {
   name = "http_server"
+
+  ingress {
+    protocol    = "tcp"
+    from_port   = 22
+    to_port     = 22
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   ingress {
     protocol    = "tcp"
