@@ -1,0 +1,23 @@
+Devops Tasks:
+
+* create a Virtual Machine on Aws with EC2 machine with HTTP server accessible from internet
+
+* install Terraform on Windows or Linux
+
+wget https://releases.hashicorp.com/terraform/0.12.16/terraform_0.12.16_linux_amd64.zip
+unzip terraform_0.12.16_linux_amd64.zip 
+rm terraform_0.12.16_linux_amd64.zip 
+sudo mv terraform /usr/bin
+
+* configure AWS client: API and keys
+
+
+* install Jenkins on AWS machine * create GitHub account - https://github.com/
+
+* manually create virtual machine with Terraform
+
+* upload the Terraform sources to GitHub
+
+* connect GitHub with Jenkins (pipelines & webhook)
+
+* schedule tasks on Jenkins to deploy EC2 machine with HTTP server accessible from internet
