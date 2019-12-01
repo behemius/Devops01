@@ -25,6 +25,7 @@ data "aws_ami" "latest-amazon-linux2" {
 resource "aws_instance" "http_server" {
   #ami = "ami-0c6b1d09930fac512"
   ami  = data.aws_ami.latest-amazon-linux2.id
+  vpc_security_group_ids = aws_security_group.http_server.id
   instance_type = "t2.micro"
 
   tags = {
@@ -33,10 +34,8 @@ resource "aws_instance" "http_server" {
   
   user_data = <<-EOF
   #!/bin/bash
-  sudo yum install apache2 -y
-  sudo systemctl enable apache2
-  sudo systemctl start apache2
-  # echo "<html><head><title> Web Server </title></head><body><h1> Apache Web Server </h1></body></html>"> /var/www/html/index.html
+  sudo yum -y install httpd
+  sudo service httpd start
   EOF
 
 }
