@@ -30,28 +30,16 @@ resource "aws_instance" "http_server" {
   tags = {
     Name = "http_server"
   }
-
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo yum update -y",
-      "sudo yum install apache2 -y",
-      "sudo systemctl enable apache2",
-      "sudo systemctl start apache2",
-      "sudo chmod 777 /var/www/html/index.html"
-    ]
-  }
-
-  provisioner "file" {
-    source = "index.html"
-    destination = "/var/www/html/index.html"
-  }
-    
-  provisioner "remote-exec" {
-    inline = [
-      "sudo chmod 644 /var/www/html/index.html"
-    ]
-  }
+  
+  user_data = <<-EOF
+  #!/bin/bash
+  sudo yum update -y
+  sudo yum install apache2 -y
+  sudo systemctl enable apache2
+  sudo systemctl start apache2
+  echo "<html><head><title> Web Server </title></head><body><h1> Apache Web Server </h1></body></html>"> /var/www/html/index.html
+  EOF
+  
 }
 
 resource "aws_security_group" "http_server" {
