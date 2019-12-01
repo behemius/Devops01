@@ -25,7 +25,7 @@ data "aws_ami" "latest-amazon-linux2" {
 resource "aws_instance" "http_server" {
   #ami = "ami-0c6b1d09930fac512"
   ami  = data.aws_ami.latest-amazon-linux2.id
-  vpc_security_group_ids = aws_security_group.http_server.id
+  vpc_security_group_ids = [aws_security_group.http_server.id]
   instance_type = "t2.micro"
 
   tags = {
