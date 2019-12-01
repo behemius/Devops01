@@ -1,6 +1,17 @@
 Devops Tasks:
 
+
+git clone https://github.com/behemius/Devops1
+cd Devops1
+
 * create a Virtual Machine on Aws with EC2 machine with HTTP server accessible from internet
+
+cd ec2_http
+
+terraform init
+terraform plan
+terraform apply
+terraform destroy
 
 * install Terraform on Windows or Linux
 
