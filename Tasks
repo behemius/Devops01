@@ -68,3 +68,4 @@ terraform apply --auto-approve
 
 * schedule tasks on Jenkins to deploy EC2 machine with HTTP server accessible from internet
 
+1. Test Jenkinsa
